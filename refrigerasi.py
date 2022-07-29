@@ -46,11 +46,11 @@ class RefrigerasiStat():
 
     def T_h_sol(self, h, X):
         func = (lambda T: self.h_sol(T, X))
-        return inversefunc(func, h)
+        return int(inversefunc(func, h))
     
     def T_h_H2O_L(self, h):
         func = (lambda T: self.h_H2O_L(T))
-        return inversefunc(func, h)
+        return int(inversefunc(func, h))
 
     def Q_act(self, E, U, A, Th, Tc):
         return E * U * A * (Th - Tc)
