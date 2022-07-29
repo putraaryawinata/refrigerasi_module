@@ -59,11 +59,35 @@ class RefrigerasiStat():
         return 10 ** (10.04999 - (1603.541 / T) - (104095.51 / (T**2)))
 
 class RefrigerasiProp(RefrigerasiStat):
-    def __init__(self):
+    def __init__(self, Q_gen=0, Q_cond=0, Q_abs=0, Q_eva=0):
+        self.Q_gen = Q_gen
+        self.Q_cond = Q_cond
+        self.Q_eva = Q_eva
+        self.Q_abs = Q_abs
+    
+    # GENERATOR PROP
+    def generator(self, T_in, m_in, h_in, m_out1, h_out1, m_out2, h_out2):
         pass
+    
+    # CONDENSER PROP
+    def condenser(self, m_in, h_in, T_in):
+        self.Q_cond = m_in * h_in
+        m_out = m_in
+        h_out = h_in
+        T_out = T_in
+        return h_out, m_out, T_out, self.Q_cond
 
-    def generator(self, Q_gen, m_in, h_in, m_out1, h_out1, m_out2, h_out2):
-        pass
-
-    def condensor(self,):
-        pass
+    # EVAPORATOR PROP
+    def evaporator(self, m_in, h_in, T_in):
+        P_evaporator = self.P_sp(T_in)
+        m_out = m_in
+        h_out = self.Q_eva / m_in + h_in
+        T_out = self.T_h_H2O_L(h_out)
+        return h_out, m_out, T_out
+    
+    # ABSORBER PROP
+    def absorber(self, m_in1, h_in1, T_in1, m_in2, h_in2, T_in2, X_in, X_out):
+        m_out = m_in1 + m_in2
+        h_out = (m_in1 * h_in1 + m_in2 * h_in2 - self.Q_abs) / m_out
+        T_out = self.T_h_sol(h_out, X_out)
+        return h_out, m_out, T_out
