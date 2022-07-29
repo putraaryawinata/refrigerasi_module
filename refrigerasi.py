@@ -75,7 +75,7 @@ class RefrigerasiProp(RefrigerasiStat):
         m_out = m_in
         h_out = h_in
         T_out = T_in
-        return h_out, m_out, T_out, self.Q_cond
+        return m_out, h_out, T_out, self.Q_cond
 
     # EVAPORATOR PROP
     def evaporator(self, m_in, h_in, T_in):
@@ -83,11 +83,11 @@ class RefrigerasiProp(RefrigerasiStat):
         m_out = m_in
         h_out = self.Q_eva / m_in + h_in
         T_out = self.T_h_H2O_L(h_out)
-        return h_out, m_out, T_out
+        return m_out, h_out, T_out
     
     # ABSORBER PROP
     def absorber(self, m_in1, h_in1, T_in1, m_in2, h_in2, T_in2, X_in, X_out):
         m_out = m_in1 + m_in2
         h_out = (m_in1 * h_in1 + m_in2 * h_in2 - self.Q_abs) / m_out
         T_out = self.T_h_sol(h_out, X_out)
-        return h_out, m_out, T_out
+        return m_out, h_out, T_out
