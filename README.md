@@ -2,10 +2,10 @@
 This is refrigeration equation and prop module. Use it to your simulation
 
 Here are some refrigeration prop lies in this module:
-| Prop      | m~in~  | 
-| --------- | -------|
-| Header    | Title  |
-| Paragraph | Text   |
+| Prop      | m<sub>in</sub>  | 
+| --------- | ----------------|
+| Header    | Title           |
+| Paragraph | Text            |
 
 **Using this module in python notebook / google colab, use this on the first code cell:**
 
