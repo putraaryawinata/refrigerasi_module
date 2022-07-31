@@ -1,6 +1,12 @@
 # Refrigerasi Module
 This is refrigeration equation and prop module. Use it to your simulation
 
+Here are some refrigeration prop lies in this module:
+| Prop      | m_{in} | 
+| --------- | -------|
+| Header    | Title  |
+| Paragraph | Text   |
+
 **Using this module in python notebook / google colab, use this on the first code cell:**
 
     !git clone https://github.com/putraaryawinata/refrigerasi_module.git
