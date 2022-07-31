@@ -66,8 +66,11 @@ class RefrigerasiProp(RefrigerasiStat):
         self.Q_abs = Q_abs
     
     # GENERATOR PROP
-    def generator(self, T_in, m_in, h_in, m_out1, h_out1, m_out2, h_out2):
-        pass
+    def generator(self, m_in, h_in, T_in, X_in, SCR):
+        m_out1 = m_in / SCR
+        m_out2 = m_in - m_out1
+        X_out = X_in * SCR / (SCR - 1)
+        return m_out1, m_out2, X_out
     
     # CONDENSER PROP
     def condenser(self, m_in, h_in, T_in):
@@ -86,8 +89,9 @@ class RefrigerasiProp(RefrigerasiStat):
         return m_out, h_out, T_out
     
     # ABSORBER PROP
-    def absorber(self, m_in1, h_in1, T_in1, m_in2, h_in2, T_in2, X_in, X_out):
+    def absorber(self, m_in1, m_in2, h_in1, h_in2, T_in1, T_in2, X_in):
         m_out = m_in1 + m_in2
         h_out = (m_in1 * h_in1 + m_in2 * h_in2 - self.Q_abs) / m_out
+        X_out = self.generator(m_in, h_in, T_in, X_in, SCR)
         T_out = self.T_h_sol(h_out, X_out)
         return m_out, h_out, T_out
