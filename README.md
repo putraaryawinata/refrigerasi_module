@@ -2,7 +2,7 @@
 This is refrigeration equation and prop module. Use it to your simulation
 
 Here are some refrigeration prop lies in this module:
-| Prop      | m_{in} | 
+| Prop      | m~in | 
 | --------- | -------|
 | Header    | Title  |
 | Paragraph | Text   |
